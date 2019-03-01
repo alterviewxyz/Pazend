@@ -11,7 +11,7 @@ const createDefaultOptions = () => {
 		interview: true,
 		php: true,
 		css: true,
-		langCode: 'en',
+		zzz_langCode: 'en',
 	};
 
 	return options;

@@ -107,7 +107,7 @@ export const getSnippetsFromLibrary = library => {
 /**
  * Function that returnes a promisse that Fetches and returns a random snippet from a random library of snippets
  * @function fetchRandomSnippet
- * @returns {Promisse} Returns a prommise that when resolved provides snippet, language & language label
+ * @returns {Promisse} Returns a prommise that when resolved provides snippet, course & course label
  */
 
 export const fetchRandomSnippet = async () => {
@@ -124,13 +124,13 @@ export const fetchRandomSnippet = async () => {
 		.then(res => res.text())
 		.then(res => {
 			const snippet = res;
-			const language = randomLibrary;
-			const language_label = SNIPPET_LIBRARY_LABELS[language];
+			const course = randomLibrary;
+			const course_label = SNIPPET_LIBRARY_LABELS[course];
 
 			return {
 				snippet,
-				language,
-				language_label,
+				course,
+				course_label,
 			};
 		})
 		.catch(err => console.error(err));
@@ -140,7 +140,7 @@ export const fetchRandomSnippet = async () => {
  * Function that returnes a promisse that Fetches and returns a random snippet from a random library of snippets
  * @function extractCodeFromSnippet
  * @param {string} source - Snippet source to extract code from
- * @param {SNIPPET_LIBRARIES} lang - Name of the library/language to get code for
+ * @param {SNIPPET_LIBRARIES} lang - Name of the library/course to get code for
  * @returns {Array} Returns an array of strings of extracted code
  */
 

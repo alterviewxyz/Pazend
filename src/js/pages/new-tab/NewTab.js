@@ -22,16 +22,17 @@ class NewTab extends Component {
 		this.state = {
 			snippet: null,
 			language: null,
-			langCode: 'en',
+			zzz_langCode: '',
 		};
 	}
 
 	componentDidMount() {
-		let langCode;
+		let zzz_langCode;
 		this.fetchLang()
 			.then(response => {
-				langCode = response;
-				console.log(langCode);
+				zzz_langCode = response;
+				this.setState({zzz_langCode});
+				console.log(zzz_langCode);
 			})
 			.catch(error => {});
 		this.fetchSnippet();
@@ -49,7 +50,7 @@ class NewTab extends Component {
 
 	fetchLang = async () => {
 		const appOptions = await restoreFromStorage();
-		const languageCode = appOptions['langCode'];
+		const languageCode = appOptions['zzz_langCode'];
 
 		this.setState({
 			languageCode,
@@ -90,7 +91,7 @@ class NewTab extends Component {
 
 	render() {
 		return (
-			<LangContext.Provider value={{langCode: this.state.langCode, strings}}>
+			<LangContext.Provider value={{zzz_langCode: this.state.zzz_langCode, strings}}>
 				<div className={CLASS}>
 					{this.renderSpinner()}
 					<Header />

@@ -22,11 +22,11 @@ const Footer = ({className = '', ...props}) => {
 						<span className={CLASS + '-outLink'}>
 							Visit my
 							<a
-								href={val.strings.ExtiontionWebPage[val.langCode]}
+								href={strings.ExtiontionWebPage[val.zzz_langCode]}
 								target="_blank"
 								title="Petrovic Stefan Portfolio"
 							>
-								{val.langCode}
+								{val.zzz_langCode}
 							</a>
 							for more cool projects!
 						</span>

@@ -51,7 +51,7 @@ class OptionsPicker extends Component {
 		if (!options) {
 			return null;
 		}
-
+		console.log(options);
 		let isSaved = await saveToStorage(options);
 
 		this.setState({
@@ -69,14 +69,30 @@ class OptionsPicker extends Component {
 		return <Spinner />;
 	};
 
-	handleOptionClick = lang => {
+	handleOptionClick = course => {
 		const {options} = this.state;
 
-		let newOptions = Object.assign({}, options, {[lang]: !options[lang]});
+		let newOptions = Object.assign({}, options, {[course]: !options[course]});
 
 		this.setState({
 			options: newOptions,
 		});
+	};
+
+	toggleLanguage = course => {
+		const {options} = this.state;
+		let toSet;
+		if (options[course] === 'fa') {
+			toSet = 'en';
+		} else if (options[course] === 'en') {
+			toSet = 'fa';
+		}
+		let newOptions = Object.assign({}, options, {[course]: toSet});
+
+		this.setState({
+			options: newOptions,
+		});
+		console.log(newOptions);
 	};
 
 	renderOptions = () => {
@@ -85,17 +101,32 @@ class OptionsPicker extends Component {
 		if (!options) {
 			return this.renderSpinner();
 		}
-
 		const optionItems = Object.keys(options).map(key => {
+			if (key === 'zzz_langCode') {
+				let toShow;
+				if (this.state.options[key] === 'fa') toShow = 'Farsi';
+				else if (this.state.options[key] === 'en') toShow = 'English';
+
+				return (
+					<span
+						className="sok-OptionsPicker-item sok-OptionsPicker-item-checked"
+						onClick={() => this.toggleLanguage(key)}
+					>
+						<img src={checkUnchecked} />
+						<span className="sok-Chip">Language: {toShow}</span>
+					</span>
+				);
+			}
+
 			const checkedClass = options[key] ? `${CLASS}-item-checked` : `${CLASS}-item-unChecked`;
 
 			return (
 				<span
-					key={`lang_${key}`}
+					key={`course_${key}`}
 					className={`${CLASS}-item ${checkedClass}`}
 					onClick={() => this.handleOptionClick(key)}
 				>
-					<img src={options[key] ? checkChecked : checkUnchecked} /> {this.renderLangChip(key)}
+					<img src={options[key] ? checkChecked : checkUnchecked} /> {this.rendercourseChip(key)}
 				</span>
 			);
 		});
@@ -109,12 +140,12 @@ class OptionsPicker extends Component {
 		);
 	};
 
-	renderLangChip = lang => {
-		if (!lang) {
+	rendercourseChip = course => {
+		if (!course) {
 			return null;
 		}
 
-		return <Chip value={lang} />;
+		return <Chip value={course} />;
 	};
 
 	toogleSaveToast = action => {
