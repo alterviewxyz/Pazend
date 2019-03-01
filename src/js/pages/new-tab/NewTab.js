@@ -7,12 +7,14 @@ import Spinner from '../../components/spinner';
 import Chip from '../../components/chip';
 import Footer from '../../components/footer';
 
+import {strings, LangContext} from '../../components/Lang';
+
 import {fetchRandomSnippet} from '../../api/snippets';
+import {restoreFromStorage} from '../../api/storage';
 
 import './NewTab.css';
 
 const CLASS = 'sok-NewTab';
-
 class NewTab extends Component {
 	constructor(props) {
 		super(props);
@@ -20,10 +22,18 @@ class NewTab extends Component {
 		this.state = {
 			snippet: null,
 			language: null,
+			langCode: 'en',
 		};
 	}
 
 	componentDidMount() {
+		let langCode;
+		this.fetchLang()
+			.then(response => {
+				langCode = response;
+				console.log(langCode);
+			})
+			.catch(error => {});
 		this.fetchSnippet();
 	}
 
@@ -35,6 +45,17 @@ class NewTab extends Component {
 			snippet,
 			language,
 		});
+	};
+
+	fetchLang = async () => {
+		const appOptions = await restoreFromStorage();
+		const languageCode = appOptions['langCode'];
+
+		this.setState({
+			languageCode,
+		});
+
+		return languageCode;
 	};
 
 	renderSnippet = () => {
@@ -69,15 +90,17 @@ class NewTab extends Component {
 
 	render() {
 		return (
-			<div className={CLASS}>
-				{this.renderSpinner()}
-				<Header />
-				<span className={`${CLASS}-contentContainer`}>
-					{this.renderLangChip()}
-					{this.renderSnippet()}
-				</span>
-				<Footer />
-			</div>
+			<LangContext.Provider value={{langCode: this.state.langCode, strings}}>
+				<div className={CLASS}>
+					{this.renderSpinner()}
+					<Header />
+					<span className={`${CLASS}-contentContainer`}>
+						{this.renderLangChip()}
+						{this.renderSnippet()}
+					</span>
+					<Footer />
+				</div>
+			</LangContext.Provider>
 		);
 	}
 }
