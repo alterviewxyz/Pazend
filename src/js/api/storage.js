@@ -6,11 +6,11 @@
 const createDefaultOptions = () => {
 	let options = {
 		german: true,
-		react: true,
-		python: true,
-		interview: true,
-		php: true,
-		css: true,
+		// react: false,
+		// python: false,
+		// interview: false,
+		// php: false,
+		// css: false,
 		zzz_langCode: 'en',
 	};
 

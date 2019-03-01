@@ -11,11 +11,11 @@ import {restoreFromStorage} from './storage';
 
 export const SNIPPET_LIBRARIES = {
 	german: 'german',
-	react: 'react',
-	python: 'python',
-	interview: 'interview',
-	php: 'php',
-	css: 'css',
+	// react: 'react',
+	// python: 'python',
+	// interview: 'interview',
+	// php: 'php',
+	// css: 'css',
 };
 
 /**
@@ -26,12 +26,12 @@ export const SNIPPET_LIBRARIES = {
  */
 
 export const SNIPPET_LIBRARY_LABELS = {
-	[SNIPPET_LIBRARIES.german]: 'german',
-	[SNIPPET_LIBRARIES.react]: 'React',
-	[SNIPPET_LIBRARIES.python]: 'Python',
-	[SNIPPET_LIBRARIES.interview]: 'Interview Questions',
-	[SNIPPET_LIBRARIES.php]: 'PHP',
-	[SNIPPET_LIBRARIES.css]: 'CSS',
+	[SNIPPET_LIBRARIES.german]: '20 Everyday German Slang Words',
+	// [SNIPPET_LIBRARIES.react]: 'React',
+	// [SNIPPET_LIBRARIES.python]: 'Python',
+	// [SNIPPET_LIBRARIES.interview]: 'Interview Questions',
+	// [SNIPPET_LIBRARIES.php]: 'PHP',
+	// [SNIPPET_LIBRARIES.css]: 'CSS',
 };
 
 /**
@@ -58,20 +58,20 @@ const getLibratyContext = library => {
 		case SNIPPET_LIBRARIES.german:
 			return require.context('../../assets/snippets/german', false, /\.md$/);
 
-		case SNIPPET_LIBRARIES.react:
-			return require.context('../../assets/snippets/react', false, /\.md$/);
+		// case SNIPPET_LIBRARIES.react:
+		// 	return require.context('../../assets/snippets/react', false, /\.md$/);
 
-		case SNIPPET_LIBRARIES.python:
-			return require.context('../../assets/snippets/python', false, /\.md$/);
+		// case SNIPPET_LIBRARIES.python:
+		// 	return require.context('../../assets/snippets/python', false, /\.md$/);
 
-		case SNIPPET_LIBRARIES.interview:
-			return require.context('../../assets/snippets/interview', false, /\.md$/);
+		// case SNIPPET_LIBRARIES.interview:
+		// 	return require.context('../../assets/snippets/interview', false, /\.md$/);
 
-		case SNIPPET_LIBRARIES.php:
-			return require.context('../../assets/snippets/php', false, /\.md$/);
+		// case SNIPPET_LIBRARIES.php:
+		// 	return require.context('../../assets/snippets/php', false, /\.md$/);
 
-		case SNIPPET_LIBRARIES.css:
-			return require.context('../../assets/snippets/css', false, /\.md$/);
+		// case SNIPPET_LIBRARIES.css:
+		// 	return require.context('../../assets/snippets/css', false, /\.md$/);
 
 		default:
 			return require.context('../../assets/snippets/german', false, /\.md$/);
@@ -86,11 +86,11 @@ const getLibratyContext = library => {
 
 export const SNIPPET_LIBRARY_CONTEXTS = {
 	[SNIPPET_LIBRARIES.german]: getLibratyContext(SNIPPET_LIBRARIES.german),
-	[SNIPPET_LIBRARIES.react]: getLibratyContext(SNIPPET_LIBRARIES.react),
-	[SNIPPET_LIBRARIES.python]: getLibratyContext(SNIPPET_LIBRARIES.python),
-	[SNIPPET_LIBRARIES.interview]: getLibratyContext(SNIPPET_LIBRARIES.interview),
-	[SNIPPET_LIBRARIES.php]: getLibratyContext(SNIPPET_LIBRARIES.php),
-	[SNIPPET_LIBRARIES.css]: getLibratyContext(SNIPPET_LIBRARIES.css),
+	// [SNIPPET_LIBRARIES.react]: getLibratyContext(SNIPPET_LIBRARIES.react),
+	// [SNIPPET_LIBRARIES.python]: getLibratyContext(SNIPPET_LIBRARIES.python),
+	// [SNIPPET_LIBRARIES.interview]: getLibratyContext(SNIPPET_LIBRARIES.interview),
+	// [SNIPPET_LIBRARIES.php]: getLibratyContext(SNIPPET_LIBRARIES.php),
+	// [SNIPPET_LIBRARIES.css]: getLibratyContext(SNIPPET_LIBRARIES.css),
 };
 
 /**
